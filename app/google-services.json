@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "681835137481",
+    "firebase_url": "https://rent-it-8b71e-default-rtdb.firebaseio.com",
+    "project_id": "rent-it-8b71e",
+    "storage_bucket": "rent-it-8b71e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681835137481:android:7adec821d67effccde0018",
+        "android_client_info": {
+          "package_name": "com.nerdy.rent_it"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681835137481-97987fjhqgdt97ap83m468r9karq3f5p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nerdy.rent_it",
+            "certificate_hash": "fad47144dbf1f5c703c2e95b1955803fe9c18359"
+          }
+        },
+        {
+          "client_id": "681835137481-dtsrn9mtpv9fmqhb93ndkt0no19o31am.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXUcOWGITEs4qL6GHGrFV5tg7jb64g0To"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681835137481-dtsrn9mtpv9fmqhb93ndkt0no19o31am.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
