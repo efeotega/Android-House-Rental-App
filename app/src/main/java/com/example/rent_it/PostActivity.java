@@ -121,16 +121,16 @@ public class PostActivity extends AppCompatActivity {
                         Uri downloadUri = task.getResult();
                         myUrl = downloadUri.toString();
                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-                        String postid = reference.push().getKey();
+                        String postId = reference.push().getKey();
                         HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("postid", postid);
+                        hashMap.put("postId", postId);
                         hashMap.put("postImage", myUrl);
                         hashMap.put("description", description.getText().toString());
                         hashMap.put("title", title.getText().toString());
                         hashMap.put("publisher", profile_id);
                         hashMap.put("email", FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
-                        reference.child(postid).setValue(hashMap);
+                        reference.child(postId).setValue(hashMap);
                         progressDialog.dismiss();
                         startActivity(new Intent(PostActivity.this, MainActivity.class));
                         finish();
@@ -141,7 +141,7 @@ public class PostActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(PostActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         } else {

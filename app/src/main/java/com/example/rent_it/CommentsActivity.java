@@ -117,7 +117,7 @@ private void addComment() {
 
     HashMap<String, Object> hashMap = new HashMap<>();
     hashMap.put("comment", addComment.getText().toString());
-    hashMap.put("publisher", firebaseUser.getUid());
+    hashMap.put("publisher", firebaseUser.getEmail());
     reference.push().setValue(hashMap);
     addComment.setText("");
 }
@@ -168,6 +168,7 @@ private void addComment() {
 //        });
 //    }
 private void readComments() {
+
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
 
     reference.addValueEventListener(new ValueEventListener() {

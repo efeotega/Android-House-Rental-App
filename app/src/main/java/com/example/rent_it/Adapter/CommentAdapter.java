@@ -93,13 +93,20 @@ public class CommentAdapter extends  RecyclerView.Adapter<CommentAdapter.ViewHol
     }
 
     private void getUserInfo(ImageView imageView,TextView username,String publisherid){
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Users").child(publisherid);
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user= snapshot.getValue(User.class);
-                Glide.with(mContext).load(user.getImageUrl()).into(imageView);
-                username.setText(user.getUserName());
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    User user=dataSnapshot.getValue(User.class);
+                    if(user.getEmail().equals(publisherid)){
+                        Glide.with(mContext).load(user.getImageUrl()).into(imageView);
+                        username.setText(user.getUserName());
+                    }
+                }
+//                User user= snapshot.getValue(User.class);
+//                Glide.with(mContext).load(user.getImageUrl()).into(imageView);
+//                username.setText(user.getUserName());
             }
 
             @Override

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,25 +55,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             Log.d("InPost", "PostError: "+post.getPostImage());
             Log.d("InPost", "PostError: "+holder.post_image);
             Glide.with(mContext).load(post.getPostImage()).into(holder.post_image);
-            if(post.getDescription().equals("")){
-                holder.discription.setVisibility(View.GONE);
-            }else{
-                holder.discription.setVisibility(View.VISIBLE);
-                holder.discription.setText(post.getDescription());
-            }
-            if(post.getTitle().equals("")){
-                holder.title.setVisibility(View.GONE);
-                holder.email.setVisibility(View.GONE);
-            }else{
-                holder.title.setVisibility(View.VISIBLE);
-                holder.title.setText(post.getTitle());
-                holder.email.setVisibility(View.VISIBLE);
-                holder.email.setText(post.getEmail());
-            }
-            publisherInfo(holder.image_profile,holder.username,holder.email,holder.publisher,post.getPublisher());
-            isLiked(post.getPostId(),holder.like);
-            nrLikes(holder.likes,post.getPostId());
-            getComments(post.getPostId(),holder.comments);
+            holder.comment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent=new Intent(mContext, CommentsActivity.class);
+                    intent.putExtra("postid",post.getPostId());
+                    intent.putExtra("publisherid",post.getPostId());
+                    mContext.startActivity(intent);
+
+                }
+            });
             holder.like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -93,16 +86,27 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
                 }
             });
-            holder.comment.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(mContext, CommentsActivity.class);
-                    intent.putExtra("postid",post.getPostId());
-                    intent.putExtra("publisherid",post.getPostId());
-                    mContext.startActivity(intent);
 
-                }
-            });
+            if(post.getDescription().isEmpty()){
+                holder.discription.setVisibility(View.GONE);
+            }else{
+                holder.discription.setVisibility(View.VISIBLE);
+                holder.discription.setText(post.getDescription());
+            }
+            if(post.getTitle().isEmpty()){
+                holder.title.setVisibility(View.GONE);
+                holder.email.setVisibility(View.GONE);
+            }else{
+                holder.title.setVisibility(View.VISIBLE);
+                holder.title.setText(post.getTitle());
+                holder.email.setVisibility(View.VISIBLE);
+                holder.email.setText(post.getEmail());
+            }
+            publisherInfo(holder.image_profile,holder.username,holder.email,holder.publisher,post.getPublisher());
+            isLiked(post.getPostId(),holder.like);
+            nrLikes(holder.likes,post.getPostId());
+            getComments(post.getPostId(),holder.comments);
+
         }catch (Exception e){
             Log.d("PostError", "PostError: "+post.getPostImage());
             Log.d("PostError", "PostError: "+mContext);
