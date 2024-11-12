@@ -74,6 +74,14 @@
             android:hint="Description"
             android:maxLines="7"
             android:id="@+id/description"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Price"
+            android:maxLines="7"
+            android:id="@+id/price"/>
+
     </LinearLayout>
 
 

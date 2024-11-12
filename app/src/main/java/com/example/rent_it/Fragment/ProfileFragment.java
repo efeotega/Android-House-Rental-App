@@ -20,6 +20,7 @@ import com.example.rent_it.LoginActivity;
 import com.example.rent_it.Model.Post;
 import com.example.rent_it.Model.User;
 import com.example.rent_it.R;
+import com.example.rent_it.TransactionListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileFragment extends Fragment {
     ImageView image_profile;
     TextView posts,followers,following ,fullname,bio,username,email;
-    Button log_out;
+    Button log_out,tranhistory;
     FirebaseUser firebaseUser;
     String profile_id;
     @Override
@@ -51,7 +52,14 @@ public class ProfileFragment extends Fragment {
         followers=view.findViewById(R.id.followers);
         following=view.findViewById(R.id.following);
         log_out=view.findViewById(R.id.log_out);
+        tranhistory=view.findViewById(R.id.transactionhistory);
 
+        tranhistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), TransactionListActivity.class));
+            }
+        });
         log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

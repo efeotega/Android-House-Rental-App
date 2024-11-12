@@ -13,6 +13,8 @@ import com.example.rent_it.Fragment.ProfileFragment;
 import com.example.rent_it.Fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import co.paystack.android.PaystackSdk;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PaystackSdk.initialize(getApplicationContext());
+        PaystackSdk.setPublicKey("pk_test_d3ab0038989181231f820d0f817df1f54cf54462");
 
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(navigationItemSelectedListener);

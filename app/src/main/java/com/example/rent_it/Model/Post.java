@@ -7,6 +7,7 @@ public class Post {
     private String publisher;
     private String title;
     private String email;
+    private String price;
 
     public Post(String postId, String postImage, String description, String publisher, String title, String email) {
         this.postId = postId;
@@ -18,6 +19,14 @@ public class Post {
     }
 
     public Post(){}
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public String getTitle() {
         return title;

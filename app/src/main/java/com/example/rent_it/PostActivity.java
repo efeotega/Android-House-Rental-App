@@ -42,13 +42,13 @@ public class PostActivity extends AppCompatActivity {
 
     ImageView close,image_added;
     TextView post;
-    EditText description,title;
+    EditText description,title,price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
-
+        price=findViewById(R.id.price);
         close=findViewById(R.id.close);
         image_added=findViewById(R.id.image_added);
         post=findViewById(R.id.post);
@@ -127,6 +127,7 @@ public class PostActivity extends AppCompatActivity {
                         hashMap.put("postImage", myUrl);
                         hashMap.put("description", description.getText().toString());
                         hashMap.put("title", title.getText().toString());
+                        hashMap.put("price", price.getText().toString());
                         hashMap.put("publisher", profile_id);
                         hashMap.put("email", FirebaseAuth.getInstance().getCurrentUser().getEmail());
 

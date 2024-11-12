@@ -15,6 +15,15 @@
         android:theme="@style/Theme.RentIt"
         tools:targetApi="31">
         <activity
+            android:name=".UserPostsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransactionListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChargeCardActivity"
+            android:exported="false" />
+        <activity
             android:name=".CommentsActivity"
             android:exported="false" />
         <activity
@@ -32,6 +41,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
+        <meta-data
+            android:name="co.paystack.android.PublicKey"
+            android:value="pk_test_d3ab0038989181231f820d0f817df1f54cf54462" />
     </application>
 
 </manifest>

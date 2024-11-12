@@ -72,12 +72,37 @@
             android:textColor="@color/grey"
             android:textStyle="bold" />
         <!--            android:text="Discription"/>-->
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+
+            android:textColor="@color/grey"
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/post_image"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:scaleType="centerCrop"/>
         <!--            android:src="@mipmap/ic_launcher"/>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:padding="15dp"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/rentbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="Rent"/>
+        </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

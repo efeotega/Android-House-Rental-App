@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,10 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.rent_it.ChargeCardActivity;
 import com.example.rent_it.CommentsActivity;
 import com.example.rent_it.Model.Post;
 import com.example.rent_it.Model.User;
 import com.example.rent_it.R;
+import com.example.rent_it.UserPostsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -66,6 +69,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
                 }
             });
+            holder.image_profile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, UserPostsActivity.class).putExtra("email",post.getEmail()));
+                }
+            });
             holder.like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -86,6 +95,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
                 }
             });
+            holder.rentbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String price=holder.price.getText().toString();
+                    mContext.startActivity(new Intent(mContext, ChargeCardActivity.class)
+                            .putExtra("price",price.replace("N",""))
+                    );
+
+                }
+            });
 
             if(post.getDescription().isEmpty()){
                 holder.discription.setVisibility(View.GONE);
@@ -101,6 +120,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 holder.title.setText(post.getTitle());
                 holder.email.setVisibility(View.VISIBLE);
                 holder.email.setText(post.getEmail());
+            }
+            if(post.getPrice()==null||post.getPrice().isEmpty()){
+                holder.price.setVisibility(View.GONE);
+            }
+            else{
+                holder.price.setVisibility(View.VISIBLE);
+                holder.price.setText("N"+post.getPrice());
             }
             publisherInfo(holder.image_profile,holder.username,holder.email,holder.publisher,post.getPublisher());
             isLiked(post.getPostId(),holder.like);
@@ -123,7 +149,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView image_profile,post_image,like,comment,save;
-        public TextView username,likes,publisher,discription,comments,title,email;
+        public TextView username,likes,publisher,discription,comments,title,email,price;
+        public Button rentbtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -138,6 +165,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             comments=itemView.findViewById(R.id.comments);
             username=itemView.findViewById(R.id.username);
             email=itemView.findViewById(R.id.email);
+            price=itemView.findViewById(R.id.price);
+            rentbtn=itemView.findViewById(R.id.rentbtn);
         }
     }
 
